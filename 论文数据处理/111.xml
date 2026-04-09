@@ -1,0 +1,88 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="IDI_Technical_Route_Advanced">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1"
+      connect="1" arrows="1" fold="1" page="1" pageScale="1"
+      pageWidth="1800" pageHeight="1400">
+
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- 标题 -->
+        <mxCell id="title"
+          value="任务一：基于深度学习与机理驱动的综合农业干旱影响指数（IDI）构建技术路线"
+          style="text;html=1;fontSize=22;fontStyle=1;align=center;"
+          vertex="1" parent="1">
+          <mxGeometry x="200" y="20" width="1400" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- 多源数据层 -->
+        <mxCell id="dataLayer"
+          value="多源数据融合&#xa;&#xa;气象数据：降水、温度、湿度、辐射&#xa;遥感数据：LST、NDVI、EVI&#xa;土壤与作物：土壤湿度、作物类型、物候阶段"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;"
+          vertex="1" parent="1">
+          <mxGeometry x="450" y="100" width="900" height="140" as="geometry"/>
+        </mxCell>
+
+        <!-- 物理约束层 -->
+        <mxCell id="mechanismLayer"
+          value="物理一致性约束层&#xa;&#xa;① ETp（FAO-56）&#xa;② ETact（TSEB）&#xa;③ Ks = ETact / ETp&#xa;④ Sphy = F(Ks, Stage)"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;"
+          vertex="1" parent="1">
+          <mxGeometry x="200" y="320" width="650" height="240" as="geometry"/>
+        </mxCell>
+
+        <!-- 时空特征层 -->
+        <mxCell id="deepLayer"
+          value="时空特征表达层&#xa;&#xa;CNN：空间纹理特征提取&#xa;LSTM / Transformer：时间依赖建模&#xa;&#xa;刻画：非线性 / 滞后效应 / 累积胁迫&#xa;&#xa;输出：Sdl"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;"
+          vertex="1" parent="1">
+          <mxGeometry x="1000" y="320" width="650" height="240" as="geometry"/>
+        </mxCell>
+
+        <!-- 融合层 -->
+        <mxCell id="fusionLayer"
+          value="语义融合与指数构建层&#xa;&#xa;IDI = f(Sphy, Sdl, Stage)&#xa;&#xa;输出：综合农业干旱影响指数（IDI）"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=16;"
+          vertex="1" parent="1">
+          <mxGeometry x="550" y="620" width="900" height="160" as="geometry"/>
+        </mxCell>
+
+        <!-- 验证层 -->
+        <mxCell id="validationLayer"
+          value="指数验证与对比&#xa;&#xa;• 与 SPI / VCI / TVDI 对比&#xa;• 与产量损失、生物量相关性分析&#xa;• 典型干旱案例验证"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;"
+          vertex="1" parent="1">
+          <mxGeometry x="550" y="830" width="900" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- 连接箭头 -->
+        <mxCell id="arrow1" style="endArrow=block;strokeWidth=2;" edge="1"
+          parent="1" source="dataLayer" target="mechanismLayer">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="arrow2" style="endArrow=block;strokeWidth=2;" edge="1"
+          parent="1" source="dataLayer" target="deepLayer">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="arrow3" style="endArrow=block;strokeWidth=2;" edge="1"
+          parent="1" source="mechanismLayer" target="fusionLayer">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="arrow4" style="endArrow=block;strokeWidth=2;" edge="1"
+          parent="1" source="deepLayer" target="fusionLayer">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="arrow5" style="endArrow=block;strokeWidth=2;" edge="1"
+          parent="1" source="fusionLayer" target="validationLayer">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

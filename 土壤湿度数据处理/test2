@@ -1,0 +1,49 @@
+import xarray as xr
+import numpy as np
+
+# 1) 原始文件
+fp_raw = r"E:\data\Soil_Humidity\10cm\SMCI_9km_2000_10cm.nc"
+
+# 2) 你重采样/裁剪后的文件（改成你自己的）
+fp_clip = r"E:\data\Soil_Humidity_CropClip_ToCropGrid\Winter_Wheat\0_10cm\SMCI_9km_2000_0_10cm_Winter_Wheat.nc"
+
+def check_nc(fp, name):
+    print("\n" + "=" * 100)
+    print(name)
+    print("=" * 100)
+
+    ds = xr.open_dataset(fp)
+    print(ds)
+
+    var_name = list(ds.data_vars)[0]
+    da = ds[var_name]
+
+    print("\n变量名:", var_name)
+    print("dtype:", da.dtype)
+    print("dims:", da.dims)
+    print("shape:", da.shape)
+
+    print("\n变量属性 attrs:")
+    for k, v in da.attrs.items():
+        print(f"  {k}: {v}")
+
+    print("\n编码信息 encoding:")
+    for k, v in da.encoding.items():
+        if k in ["dtype", "_FillValue", "scale_factor", "add_offset"]:
+            print(f"  {k}: {v}")
+
+    vals = da.values
+    vals = vals[np.isfinite(vals)]
+
+    print("\n数值统计:")
+    print("min:", float(vals.min()))
+    print("max:", float(vals.max()))
+    print("mean:", float(vals.mean()))
+    print("p1:", float(np.percentile(vals, 1)))
+    print("p50:", float(np.percentile(vals, 50)))
+    print("p99:", float(np.percentile(vals, 99)))
+
+    ds.close()
+
+check_nc(fp_raw, "原始文件检查")
+check_nc(fp_clip, "裁剪后文件检查")
